@@ -1,15 +1,15 @@
 name: todos_api
-description: A Very Good Project created by Very Good CLI.
+description:
 version: 0.1.0+1
 publish_to: none
 
 environment:
-  sdk: ^3.5.0
+  sdk: ^3.6.0
 
 dependencies:
   equatable: ^2.0.7
   json_annotation: ^4.9.0
-  meta: ^1.16.0
+  meta: ^1.15.0
   uuid: ^4.5.1
 
 dev_dependencies:

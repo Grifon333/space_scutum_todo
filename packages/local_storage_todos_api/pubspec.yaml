@@ -1,0 +1,19 @@
+name: local_storage_todos_api
+description:
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.3.5
+  todos_api:
+    path: ../todos_api
+  meta: ^1.15.0
+  rxdart: ^0.28.0
+
+dev_dependencies:
+

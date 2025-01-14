@@ -5,12 +5,13 @@ version: 1.0.0+1
 
 environment:
   sdk: ^3.6.0
+
 dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  local_storage:
-    path: packages/local_storage
+  local_storage_todos_api:
+    path: packages/local_storage_todos_api
   todos_api:
     path: packages/todos_api
   todos_repository:

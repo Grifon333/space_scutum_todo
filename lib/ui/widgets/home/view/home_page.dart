@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:space_scutum_todo/ui/widgets/home/home.dart';
+import 'package:space_scutum_todo/ui/widgets/tasks/tasks.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -23,9 +24,10 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       body: IndexedStack(
         index: selectedTab.index,
-        children: const [Center(child: Text('1')), Center(child: Text('2'))],
+        children: const [TasksPage(), Center(child: Text('2'))],
       ),
       floatingActionButton: FloatingActionButton(
+        // TODO: task edit screen
         onPressed: () {},
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10))),

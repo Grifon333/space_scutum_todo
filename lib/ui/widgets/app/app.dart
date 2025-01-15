@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:space_scutum_todo/ui/widgets/home/home.dart';
 import 'package:todos_repository/todos_repository.dart';
 
 class App extends StatelessWidget {
@@ -27,7 +28,7 @@ class AppView extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Scaffold(body: Center(child: Text('Space Scutum ToDo'))),
+      home: const HomePage(),
     );
   }
 }

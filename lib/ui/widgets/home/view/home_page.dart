@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:space_scutum_todo/ui/widgets/home/home.dart';
+import 'package:space_scutum_todo/ui/widgets/task_details/task_details.dart';
 import 'package:space_scutum_todo/ui/widgets/tasks/tasks.dart';
 
 class HomePage extends StatelessWidget {
@@ -27,8 +28,7 @@ class HomeView extends StatelessWidget {
         children: const [TasksPage(), Center(child: Text('2'))],
       ),
       floatingActionButton: FloatingActionButton(
-        // TODO: task edit screen
-        onPressed: () {},
+        onPressed: () => Navigator.of(context).push(TaskDetailsPage.route()),
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10))),
         child: const Icon(Icons.add),

@@ -67,19 +67,16 @@ class TasksView extends StatelessWidget {
                 ),
               );
             }
-            return ListView.separated(
-              itemBuilder: (context, index) {
-                // final task = state.filteredTasks.elementAt(index);
-                final task = Todo(
-                  title: 'Title',
-                  description: 'description',
-                  category: 'Home',
-                );
-                return TaskCard(task: task);
-              },
-              separatorBuilder: (_, __) => SizedBox(height: 8),
-              // itemCount: state.filteredTasks.length
-              itemCount: 10,
+            return Padding(
+              padding: const EdgeInsets.all(8),
+              child: ListView.separated(
+                itemBuilder: (context, index) {
+                  final task = state.filteredTasks.elementAt(index);
+                  return TaskCard(task: task);
+                },
+                separatorBuilder: (_, __) => SizedBox(height: 8),
+                itemCount: state.filteredTasks.length
+              ),
             );
           },
         ),

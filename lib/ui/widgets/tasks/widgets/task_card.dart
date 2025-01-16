@@ -13,6 +13,8 @@ class TaskCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dismissible(
       key: Key('TaskCard_${task.id}'),
+      onDismissed: (_) => context.read<TasksBloc>().add(TasksTaskDeleted(task)),
+      direction: DismissDirection.endToStart,
       child: ListTile(
         title: Text(
           task.title,
@@ -43,7 +45,8 @@ class TaskCard extends StatelessWidget {
         ),
         trailing: Icon(Icons.chevron_right),
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10))),
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+        ),
         tileColor: Colors.orange,
         onTap: () => Navigator.of(context).push(
           TaskDetailsPage.route(initTask: task),

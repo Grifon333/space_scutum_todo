@@ -5,7 +5,7 @@ sealed class TasksEvent extends Equatable {
   const TasksEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class TasksSubscriptionRequired extends TasksEvent {
@@ -36,9 +36,10 @@ class TasksTaskDeleted extends TasksEvent {
 
 class TasksFilterChanged extends TasksEvent {
   final TasksFilter filter;
+  final String? selectCategory;
 
-  const TasksFilterChanged(this.filter);
+  const TasksFilterChanged(this.filter, this.selectCategory);
 
   @override
-  List<Object> get props => [filter];
+  List<Object?> get props => [filter, selectCategory];
 }

@@ -28,10 +28,17 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     emit(state.copyWith(status: TasksStatus.loading));
     await emit.forEach<List<Todo>>(
       _repository.getTodos(),
-      onData: (tasks) => state.copyWith(
-        status: TasksStatus.success,
-        tasks: tasks,
-      ),
+      onData: (tasks) {
+        Set<String> categories = tasks
+            .map((task) => task.category)
+            .where((el) => el.isNotEmpty)
+            .toSet();
+        return state.copyWith(
+          status: TasksStatus.success,
+          tasks: tasks,
+          categories: categories,
+        );
+      },
       onError: (_, __) => state.copyWith(status: TasksStatus.failure),
     );
   }
@@ -55,6 +62,9 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     TasksFilterChanged event,
     Emitter<TasksState> emit,
   ) {
-    emit(state.copyWith(filter: event.filter));
+    emit(state.copyWith(
+      filter: event.filter,
+      selectCategory: event.selectCategory,
+    ));
   }
 }

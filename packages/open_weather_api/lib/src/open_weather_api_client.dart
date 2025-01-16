@@ -3,7 +3,11 @@ import 'package:http/http.dart' as http;
 import 'package:open_weather_api/open_weather_api.dart';
 
 class OpenWeatherApiClient {
-  final http.Client _client = http.Client();
+  final http.Client _client;
+
+  OpenWeatherApiClient({
+    http.Client? client,
+  }) : _client = client ?? http.Client();
 
   Future<Response> getWeather(String city) async {
     final url = Uri.https(

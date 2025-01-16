@@ -15,7 +15,7 @@ class OpenWeatherApiClient {
       '/data/2.5/weather',
       {
         'q': city,
-        'units': 'metrics',
+        'units': 'metric',
         'appid': 'b537cebafba5f3e160e7f027d9b321a9',
       },
     );

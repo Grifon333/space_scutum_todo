@@ -2,16 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:space_scutum_todo/ui/widgets/home/home.dart';
 import 'package:todos_repository/todos_repository.dart';
+import 'package:weather_repository/weather_repository.dart';
 
 class App extends StatelessWidget {
-  final TodosRepository todosRepository;
+  final TodosRepository _todosRepository;
+  final WeatherRepository _weatherRepository;
 
-  const App({super.key, required this.todosRepository});
+  const App({
+    super.key,
+    required TodosRepository todosRepository,
+    required WeatherRepository weatherRepository,
+  })  : _todosRepository = todosRepository,
+        _weatherRepository = weatherRepository;
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider.value(
-      value: todosRepository,
+    return MultiBlocProvider(
+      providers: [
+        RepositoryProvider.value(value: _todosRepository),
+        RepositoryProvider.value(value: _weatherRepository),
+      ],
       child: const AppView(),
     );
   }

@@ -5,19 +5,20 @@ class WeatherRepository {
   final OpenWeatherApiClient _weatherApiClient;
 
   WeatherRepository({
-    required OpenWeatherApiClient? weatherApiClient,
+    OpenWeatherApiClient? weatherApiClient,
   }) : _weatherApiClient = weatherApiClient ?? OpenWeatherApiClient();
 
   Future<Weather> getWeather(String city) async {
     final response = await _weatherApiClient.getWeather(city);
     return Weather(
-      location: response.system.country,
-      temperature: response.main.temperature,
+      location: response.name,
+      temperatureCurrent: response.main.temperature,
       temperatureMin: response.main.temperatureMin,
       temperatureMax: response.main.temperatureMax,
-      weatherType: response.weather.first.main,
+      condition: response.weather.first.main,
       windSpeed: response.wind.speed,
       windDirection: response.wind.direction,
+      icon: response.weather.first.icon,
     );
   }
 }

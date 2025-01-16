@@ -6,21 +6,23 @@ part 'weather.g.dart';
 @JsonSerializable()
 class Weather extends Equatable {
   final String location;
-  final double temperature;
+  final double temperatureCurrent;
   final double temperatureMin;
   final double temperatureMax;
-  final String weatherType;
+  final String condition;
   final double windSpeed;
   final int windDirection;
+  final String icon;
 
   const Weather({
     required this.location,
-    required this.temperature,
+    required this.temperatureCurrent,
     required this.temperatureMin,
     required this.temperatureMax,
-    required this.weatherType,
+    required this.condition,
     required this.windSpeed,
     required this.windDirection,
+    required this.icon,
   });
 
   factory Weather.fromJson(Map<String, dynamic> json) =>
@@ -31,10 +33,10 @@ class Weather extends Equatable {
   @override
   List<Object> get props => [
         location,
-        temperature,
+        temperatureCurrent,
         temperatureMin,
         temperatureMax,
-        weatherType,
+        condition,
         windSpeed,
         windDirection,
       ];

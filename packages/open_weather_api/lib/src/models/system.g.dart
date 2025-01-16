@@ -7,8 +7,8 @@ part of 'system.dart';
 // **************************************************************************
 
 System _$SystemFromJson(Map<String, dynamic> json) => System(
-      type: (json['type'] as num).toInt(),
-      id: (json['id'] as num).toInt(),
+      type: (json['type'] as num?)?.toInt(),
+      id: (json['id'] as num?)?.toInt(),
       country: json['country'] as String,
       sunrise: (json['sunrise'] as num).toInt(),
       sunset: (json['sunset'] as num).toInt(),

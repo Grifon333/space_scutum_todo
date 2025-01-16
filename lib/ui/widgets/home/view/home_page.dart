@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:space_scutum_todo/ui/widgets/home/home.dart';
 import 'package:space_scutum_todo/ui/widgets/task_details/task_details.dart';
 import 'package:space_scutum_todo/ui/widgets/tasks/tasks.dart';
+import 'package:space_scutum_todo/ui/widgets/weather/view/weather_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -25,7 +26,7 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       body: IndexedStack(
         index: selectedTab.index,
-        children: const [TasksPage(), Center(child: Text('2'))],
+        children: const [TasksPage(), WeatherPage()],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.of(context).push(TaskDetailsPage.route()),

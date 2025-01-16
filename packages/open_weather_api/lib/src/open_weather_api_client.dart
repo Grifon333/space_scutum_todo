@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:open_weather_api/open_weather_api.dart';
+import 'config.dart';
 
 class OpenWeatherApiClient {
   final http.Client _client;
@@ -16,17 +17,23 @@ class OpenWeatherApiClient {
       {
         'q': city,
         'units': 'metric',
-        'appid': 'b537cebafba5f3e160e7f027d9b321a9',
+        'appid': Config.apiKey,
       },
     );
-    try {
-      final response = await _client.get(url);
-      _validateResponse(response);
-      final Map<String, dynamic> json = await jsonDecode(response.body);
-      return Response.fromJson(json);
-    } catch (e) {
-      throw Exception(e);
-    }
+    final response = await _client.get(url);
+    _validateResponse(response);
+    final Map<String, dynamic> json = await jsonDecode(response.body);
+    return Response.fromJson(json);
+  }
+
+  Future<String> getIconBytes(String icon) async {
+    final url = Uri.https(
+      'openweathermap.org',
+      '/img/wn/$icon@4x.png',
+    );
+    final response = await _client.get(url);
+    _validateResponse(response);
+    return base64Encode(response.bodyBytes);
   }
 
   void _validateResponse(http.Response response) =>

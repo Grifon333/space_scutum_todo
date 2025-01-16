@@ -21,4 +21,7 @@ class WeatherRepository {
       icon: response.weather.first.icon,
     );
   }
+
+  Future<String> getImageBytes(String imageCode) =>
+      _weatherApiClient.getIconBytes(imageCode);
 }

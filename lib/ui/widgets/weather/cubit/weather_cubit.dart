@@ -6,6 +6,7 @@ import 'package:weather_repository/weather_repository.dart'
     show WeatherRepository;
 
 part 'weather_cubit.g.dart';
+
 part 'weather_state.dart';
 
 class WeatherCubit extends HydratedCubit<WeatherState> {
@@ -20,7 +21,12 @@ class WeatherCubit extends HydratedCubit<WeatherState> {
       final weather = Weather.fromRepository(
         await _weatherRepository.getWeather(city),
       );
-      emit(state.copyWith(status: WeatherStatus.success, weather: weather));
+      final iconBytes = await _weatherRepository.getImageBytes(weather.icon);
+      emit(state.copyWith(
+        status: WeatherStatus.success,
+        weather: weather,
+        imageBytes: iconBytes,
+      ));
     } on Equatable {
       emit(state.copyWith(status: WeatherStatus.failure));
     }
@@ -35,14 +41,20 @@ class WeatherCubit extends HydratedCubit<WeatherState> {
       final weather = Weather.fromRepository(
         await _weatherRepository.getWeather(state.weather.location),
       );
-      emit(state.copyWith(status: WeatherStatus.success, weather: weather));
+      final iconBytes = await _weatherRepository.getImageBytes(weather.icon);
+      emit(state.copyWith(
+        status: WeatherStatus.success,
+        weather: weather,
+        imageBytes: iconBytes,
+      ));
     } on Exception {
       emit(state);
     }
   }
 
   @override
-  WeatherState? fromJson(Map<String, dynamic> json) => WeatherState.fromJson(json);
+  WeatherState? fromJson(Map<String, dynamic> json) =>
+      WeatherState.fromJson(json);
 
   @override
   Map<String, dynamic>? toJson(WeatherState state) => state.toJson();

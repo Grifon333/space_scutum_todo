@@ -12,12 +12,14 @@ WeatherState _$WeatherStateFromJson(Map<String, dynamic> json) => WeatherState(
       weather: json['weather'] == null
           ? null
           : Weather.fromJson(json['weather'] as Map<String, dynamic>),
+      imageBytes: json['imageBytes'] as String?,
     );
 
 Map<String, dynamic> _$WeatherStateToJson(WeatherState instance) =>
     <String, dynamic>{
       'status': _$WeatherStatusEnumMap[instance.status]!,
       'weather': instance.weather,
+      'imageBytes': instance.imageBytes,
     };
 
 const _$WeatherStatusEnumMap = {

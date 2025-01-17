@@ -20,10 +20,14 @@ class WeatherPage extends StatelessWidget {
         create: (context) => WeatherCubit(context.read<WeatherRepository>()),
         child: BlocBuilder<WeatherCubit, WeatherState>(
           builder: (context, state) {
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: WeatherView(weather: state.weather),
+            return Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                spacing: 16,
+                children: [
+                  SearchForm(),
+                  WeatherViewBuilder(state: state),
+                ],
               ),
             );
           },
@@ -33,10 +37,36 @@ class WeatherPage extends StatelessWidget {
   }
 }
 
-class WeatherView extends StatelessWidget {
+class WeatherViewBuilder extends StatelessWidget {
+  final WeatherState state;
+
+  const WeatherViewBuilder({super.key, required this.state});
+
+  @override
+  Widget build(BuildContext context) {
+    final style = TextStyle(color: Colors.white, fontSize: 20);
+    return Builder(
+      builder: (context) => switch (state.status) {
+        WeatherStatus.initial => Text('Please, select the City', style: style),
+        WeatherStatus.loading => Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            spacing: 8,
+            children: [
+              CircularProgressIndicator(),
+              Text('Loading weather', style: style),
+            ],
+          ),
+        WeatherStatus.success => WeatherSuccessView(weather: state.weather),
+        WeatherStatus.failure => Text('An error occurred', style: style),
+      },
+    );
+  }
+}
+
+class WeatherSuccessView extends StatelessWidget {
   final Weather weather;
 
-  const WeatherView({super.key, required this.weather});
+  const WeatherSuccessView({super.key, required this.weather});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +75,6 @@ class WeatherView extends StatelessWidget {
       child: Column(
         spacing: 16,
         children: [
-          SearchForm(),
           CountryName(location: weather.location),
           ConditionIcon(),
           ConditionTitle(condition: weather.condition),

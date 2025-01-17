@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:space_scutum_todo/ui/theme/main_theme.dart';
 import 'package:space_scutum_todo/ui/widgets/home/home.dart';
 import 'package:todos_repository/todos_repository.dart';
 import 'package:weather_repository/weather_repository.dart';
@@ -34,10 +35,7 @@ class AppView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Space Scutum ToDo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: MainTheme.light,
       home: const HomePage(),
     );
   }

@@ -12,10 +12,7 @@ class WeatherPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Weather'),
-      ),
-      backgroundColor: Colors.black,
+      appBar: AppBar(title: Text('Weather')),
       body: BlocProvider(
         create: (context) => WeatherCubit(context.read<WeatherRepository>()),
         child: BlocBuilder<WeatherCubit, WeatherState>(
@@ -46,7 +43,7 @@ class WeatherViewBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = TextStyle(color: Colors.white, fontSize: 20);
+    final style = TextStyle(color: Colors.white, fontSize: 18);
     return Builder(
       builder: (context) => switch (state.status) {
         WeatherStatus.initial => Text('Please, select the City', style: style),

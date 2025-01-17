@@ -39,9 +39,7 @@ class TaskDetailsView extends StatelessWidget {
     final isNewTask =
         context.select((TaskDetailsBloc bloc) => bloc.state.isNewTask);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(isNewTask ? 'Add' : 'Edit'),
-      ),
+      appBar: AppBar(title: Text(isNewTask ? 'Add' : 'Edit')),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

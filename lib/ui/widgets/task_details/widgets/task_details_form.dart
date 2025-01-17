@@ -30,13 +30,13 @@ class TitleTextField extends StatelessWidget {
     return TextFormField(
       initialValue: title,
       decoration: InputDecoration(
-          hintText: 'Add the title...',
-          border: OutlineInputBorder(),
-          enabled: !bloc.state.status.isLoadingOrSuccess),
-      style: TextStyle(fontSize: 18),
+        hintText: 'Add the title...',
+        enabled: !bloc.state.status.isLoadingOrSuccess,
+      ),
+      style: TextStyle(fontSize: 18, color: Colors.white),
       inputFormatters: [
         LengthLimitingTextInputFormatter(50),
-        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
+        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9\s]')),
       ],
       onChanged: (value) => bloc.add(TaskDetailsTitleChanged(value)),
     );
@@ -54,10 +54,10 @@ class DescriptionTextField extends StatelessWidget {
     return TextFormField(
       initialValue: description,
       decoration: InputDecoration(
-          hintText: 'Add the description...',
-          border: OutlineInputBorder(),
-          enabled: !bloc.state.status.isLoadingOrSuccess),
-      style: TextStyle(fontSize: 18),
+        hintText: 'Add the description...',
+        enabled: !bloc.state.status.isLoadingOrSuccess,
+      ),
+      style: TextStyle(fontSize: 18, color: Colors.white),
       maxLines: 5,
       inputFormatters: [LengthLimitingTextInputFormatter(200)],
       onChanged: (value) => bloc.add(TaskDetailsDescriptionChanged(value)),
@@ -76,10 +76,10 @@ class CategoryTextField extends StatelessWidget {
     return TextFormField(
       initialValue: category,
       decoration: InputDecoration(
-          hintText: 'Add the category...',
-          border: OutlineInputBorder(),
-          enabled: !bloc.state.status.isLoadingOrSuccess),
-      style: TextStyle(fontSize: 18),
+        hintText: 'Add the category...',
+        enabled: !bloc.state.status.isLoadingOrSuccess,
+      ),
+      style: TextStyle(fontSize: 18, color: Colors.white),
       inputFormatters: [
         LengthLimitingTextInputFormatter(50),
         FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),

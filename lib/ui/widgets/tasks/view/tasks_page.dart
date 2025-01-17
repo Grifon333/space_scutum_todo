@@ -24,11 +24,7 @@ class TasksView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        title: Text('Tasks'),
-        actions: [TasksFilterButton()],
-      ),
+      appBar: AppBar(title: Text('Tasks'), actions: [TasksFilterButton()]),
       body: BlocListener<TasksBloc, TasksState>(
         listener: (context, state) {
           if (state.status == TasksStatus.failure) {
@@ -70,13 +66,12 @@ class TasksView extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.all(8),
               child: ListView.separated(
-                itemBuilder: (context, index) {
-                  final task = state.filteredTasks.elementAt(index);
-                  return TaskCard(task: task);
-                },
-                separatorBuilder: (_, __) => SizedBox(height: 8),
-                itemCount: state.filteredTasks.length
-              ),
+                  itemBuilder: (context, index) {
+                    final task = state.filteredTasks.elementAt(index);
+                    return TaskCard(task: task);
+                  },
+                  separatorBuilder: (_, __) => SizedBox(height: 8),
+                  itemCount: state.filteredTasks.length),
             );
           },
         ),

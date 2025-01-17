@@ -13,11 +13,12 @@ class SubmittedButton extends StatelessWidget {
       onPressed: isLoadingOrSuccess
           ? null
           : () => context.read<TaskDetailsBloc>().add(TaskDetailsSubmitted()),
-      style: ButtonStyle(
-        minimumSize: WidgetStatePropertyAll(Size(double.infinity, 50)),
-      ),
-      child:
-      isLoadingOrSuccess ? CircularProgressIndicator() : Text('Submitted'),
+      child: isLoadingOrSuccess
+          ? CircularProgressIndicator()
+          : Text(
+              'Submitted',
+              style: TextStyle(color: Colors.black, fontSize: 18),
+            ),
     );
   }
 }

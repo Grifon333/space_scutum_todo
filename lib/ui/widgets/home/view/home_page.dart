@@ -30,8 +30,6 @@ class HomeView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.of(context).push(TaskDetailsPage.route()),
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10))),
         child: const Icon(Icons.add),
       ),
       bottomNavigationBar: BottomAppBar(
@@ -72,8 +70,7 @@ class TabButton extends StatelessWidget {
     return IconButton(
       onPressed: () => context.read<HomeCubit>().setTap(value),
       icon: icon,
-      iconSize: 32,
-      color: value == selectValue ? Colors.green : null,
+      color: value == selectValue ? Colors.deepOrange : null,
     );
   }
 }

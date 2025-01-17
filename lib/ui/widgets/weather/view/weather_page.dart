@@ -23,10 +23,12 @@ class WeatherPage extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
-                spacing: 16,
                 children: [
                   SearchForm(),
+                  SizedBox(height: 16),
                   WeatherViewBuilder(state: state),
+                  Spacer(),
+                  LastUpdateTime(lastUpdate: state.weather.lastUpdate),
                 ],
               ),
             );
@@ -72,15 +74,19 @@ class WeatherSuccessView extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: context.read<WeatherCubit>().refreshWeather,
-      child: Column(
-        spacing: 16,
-        children: [
-          CountryName(location: weather.location),
-          ConditionIcon(),
-          ConditionTitle(condition: weather.condition),
-          TemperatureBoard(temperature: weather.temperature),
-          WindBoard(wind: weather.wind),
-        ],
+      child: SingleChildScrollView(
+        physics: AlwaysScrollableScrollPhysics(),
+        clipBehavior: Clip.none,
+        child: Column(
+          spacing: 16,
+          children: [
+            CountryName(location: weather.location),
+            ConditionIcon(),
+            ConditionTitle(condition: weather.condition),
+            TemperatureBoard(temperature: weather.temperature),
+            WindBoard(wind: weather.wind),
+          ],
+        ),
       ),
     );
   }

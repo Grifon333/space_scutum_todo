@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -11,6 +10,12 @@ import 'package:space_scutum_todo/ui/widgets/app/app_bloc_observer.dart';
 import 'package:todos_repository/todos_repository.dart';
 import 'package:weather_repository/weather_repository.dart';
 
+/// 1) Initialize a TodosApi based on local storage, using SharedPreferences to save data
+/// 2) Configures a global error handler for Flutter framework errors.
+/// 3) Setup a custom BLoC observer
+/// 4) Creates the todos and the weather repositories
+/// 5) Configures hydrated storage for caching Bloc state across app restarts
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final todosApi = LocalStorageTodosApi(
@@ -18,10 +23,6 @@ Future<void> main() async {
   );
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
-  };
-  PlatformDispatcher.instance.onError = (error, stack) {
-    log(error.toString(), stackTrace: stack);
-    return true;
   };
   Bloc.observer = const AppBlocObserver();
   final todosRepository = TodosRepository(todosApi: todosApi);

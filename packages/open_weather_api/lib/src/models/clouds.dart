@@ -4,6 +4,7 @@ part 'clouds.g.dart';
 
 @JsonSerializable()
 class Clouds {
+  /// Cloudiness, %
   int all;
 
   Clouds({

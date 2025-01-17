@@ -4,10 +4,19 @@ part 'system.g.dart';
 
 @JsonSerializable()
 class System {
+  /// Internal parameter
   int? type;
+
+  /// Internal parameter
   int? id;
+
+  /// Country code (GB, JP etc.)
   String country;
+
+  /// Sunrise time, unix, UTC
   int sunrise;
+
+  /// Sunset time, unix, UTC
   int sunset;
 
   System({

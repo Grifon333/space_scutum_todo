@@ -4,12 +4,35 @@ import 'package:uuid/uuid.dart';
 
 part 'todo.g.dart';
 
+/// A data model representing a single `todo` item.
+/// Contains a [title], [description] and [id], in addition to a [isCompleted] flag.
+///
+/// If [id] is specified, it cannot be empty. If [id] is not specified, it will be generated.
 @JsonSerializable()
 class Todo extends Equatable {
+  /// The id of the `todo`
+  ///
+  /// Cannot be empty
   final String id;
+
+  /// The title of the `todo`
+  ///
+  /// Cannot be empty
   final String title;
+
+  /// The description of the `todo`
+  ///
+  /// Default to an empty string
   final String description;
+
+  /// The category of the `todo`
+  ///
+  /// Default to an empty string
   final String category;
+
+  /// Whether the `todo` is completed
+  ///
+  /// Default to 'false'
   final bool isCompleted;
 
   Todo({
@@ -18,14 +41,21 @@ class Todo extends Equatable {
     this.description = '',
     this.category = '',
     this.isCompleted = false,
-  }) : id = id ?? const Uuid().v4();
+  })  : assert(id == null || id.isNotEmpty, 'id must either be null or not empty'),
+        id = id ?? const Uuid().v4();
 
   static Todo fromJson(Map<String, dynamic> json) => _$TodoFromJson(json);
 
   Map<String, dynamic> toJson() => _$TodoToJson(this);
 
   @override
-  List<Object> get props => [id, title, description, category, isCompleted,];
+  List<Object> get props => [
+        id,
+        title,
+        description,
+        category,
+        isCompleted,
+      ];
 
   Todo copyWith({
     String? id,

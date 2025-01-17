@@ -3,6 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'weather.g.dart';
 
+/// Represents detailed weather information for a specific city.
 @JsonSerializable()
 class Weather extends Equatable {
   final String location;

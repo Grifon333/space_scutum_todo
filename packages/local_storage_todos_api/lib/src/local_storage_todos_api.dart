@@ -6,11 +6,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todos_api/todos_api.dart';
 import 'package:meta/meta.dart';
 
+/// A Flutter implementation of the [TodosApi] that uses local storage.
 class LocalStorageTodosApi extends TodosApi {
   final SharedPreferences _storage;
   late final _todoStreamController = BehaviorSubject<List<Todo>>.seeded(
     const [],
   );
+
+  /// Key for accessing the todos collection in SharedPreferences.
+  ///
+  /// It is available for testing purposes only and should not be used by users of this library.
   @visibleForTesting
   static const kTodosCollectionKey = '__todos_collections_key__';
 

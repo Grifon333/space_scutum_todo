@@ -4,9 +4,13 @@ part 'weather.g.dart';
 
 @JsonSerializable()
 class Weather {
+  /// Weather condition ID
   int id;
+  /// Group of weather parameters (Rain, Snow, Clouds etc.)
   String main;
+  /// Weather condition within the group.
   String description;
+  /// Weather icon id
   String icon;
 
   Weather({
